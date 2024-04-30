@@ -2,8 +2,8 @@
 
 import sys
 import getpass # for hidden password input
-from book import BookManagement
-from user import UserManagement
+from book import book
+from user import user
 import storage
 import datetime # for noting the check out date and expected return date
 from tabulate import tabulate # for pretty printing   
@@ -17,7 +17,7 @@ class CentralManager:
     '''
     def __init__(self):
         self.library_obj = {"book_data": [], "user_data": []}
-        self.storage_management = storage.StorageManagement()
+        self.storage_management = storage.storage()
         self.library_obj = self.storage_management.load_data()
     
     def add_item(self, item, item_type=None):
@@ -25,7 +25,7 @@ class CentralManager:
             Method to add item to the library
             It takes item and item_type as input
             item_type can be books or users
-            item can be BookManagement or UserManagement object
+            item can be book or user object
             It adds the item to the library object and save it to the storage management Json file
         '''
         if item_type == "books":
@@ -49,11 +49,11 @@ class CentralManager:
         for catalog, items in self.library_obj.items():
             for item in items:
                 if item.identifier == identifier:
-                    if isinstance(item, BookManagement):
+                    if isinstance(item, book):
                         if item.checked_out_by:
                             print(f"This book is checked out by a user id - {item.checked_out_by}. Checking in the book before deleting.")
                             self.checkin_book(item.checked_out_by, item.identifier)
-                    elif isinstance(item, UserManagement):
+                    elif isinstance(item, user):
                         for user_obj in self.library_obj["user_data"]:
                             if user_obj.identifier == item.identifier:
                                 for checked_out_book in user_obj.checked_out_books.copy().keys():
@@ -271,8 +271,8 @@ def main():
                     title = input("Enter title: ")
                     author = input("Enter author: ")
                     
-                    book = BookManagement(title, author, isbn)
-                    center_manager.add_item(book, "books")
+                    book_obj = book(title, author, isbn)
+                    center_manager.add_item(book_obj, "books")
                     print("Book added Sucessfully.")
                     break
         elif choice == '2': # update book
@@ -355,14 +355,14 @@ def main():
                 if user_id in center_manager.storage_management.save_data_dic["user_data"].keys():
                     print("User ID already taken kindly enter a different user id or update the existing user.")
                     continue
-                elif isbn == "#":
+                elif user_id == "#":
                     break
                 else:
                     name = input("Enter user name: ")
                     password = getpass.getpass(prompt="Enter password: ")
                     e_password = storage.cipher_suite.encrypt(password.encode()).decode()
-                    user = UserManagement(name, user_id, e_password)
-                    center_manager.add_item(user, "users")
+                    user_obj = user(name, user_id, e_password)
+                    center_manager.add_item(user_obj, "users")
                     print("User added sucessfully.")
                     break
         elif choice == '10': # update user

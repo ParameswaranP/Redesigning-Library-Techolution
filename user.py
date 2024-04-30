@@ -1,9 +1,9 @@
 from models import CenteralIdentefier
 
 
-class UserManagement(CenteralIdentefier):
+class user(CenteralIdentefier):
     '''
-        UserManagement class is used to create a user object.
+        user class is used to create a user object.
         It has the information of user like name, user_id, password, checked_out_books.
     '''
     def __init__(self, name, user_id, password, checked_out_books={}):

@@ -14,24 +14,37 @@
             "identifier": "456",
             "author": "MoM",
             "isbn": "456",
-            "checked_out_by": "1",
-            "check_out_date_time": "2024-04-14 16:23:10",
-            "exp_return_date_time": "2024-04-22 16:23:10"
+            "checked_out_by": null,
+            "check_out_date_time": null,
+            "exp_return_date_time": null
+        },
+        "uyu": {
+            "title": "jyyfgy",
+            "identifier": "uyu",
+            "author": "1876543",
+            "isbn": "uyu",
+            "checked_out_by": null,
+            "check_out_date_time": null,
+            "exp_return_date_time": null
+        },
+        "qwerty": {
+            "title": "qwer",
+            "identifier": "qwerty",
+            "author": "werty",
+            "isbn": "qwerty",
+            "checked_out_by": null,
+            "check_out_date_time": null,
+            "exp_return_date_time": null
         }
     },
     "user_data": {
-        "1": {
-            "title": "Paramesh",
-            "identifier": "1",
-            "name": "Paramesh",
-            "user_id": "1",
-            "password": "gAAAAABmG5t2IEXia0T_BzXs0pYpLoqEeAY5U_9wQAGjoZTWMVa-LHJ7iyeirAnKm703FDJQetmjtL-wsgipjn-bcjXYMMQk4w==",
-            "checked_out_books": {
-                "456": {
-                    "check_out_date_time": "2024-04-14 16:23:10",
-                    "exp_return_date_time": "2024-04-22 16:23:10"
-                }
-            }
+        "12345": {
+            "title": "para",
+            "identifier": "12345",
+            "name": "para",
+            "user_id": "12345",
+            "password": "gAAAAABmMSrbwQGGQ13dXdgqHvaHqpnc_hjp-xrRO8jnEGbpyVcYZeRV88BnVd72fHc-AWPkYpqGdIjqZeWmk1UASwyno06osw==",
+            "checked_out_books": {}
         }
     }
 }

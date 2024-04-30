@@ -1,7 +1,7 @@
 import json
 import os
-from book import BookManagement
-from user import UserManagement
+from book import book
+from user import user
 from cryptography.fernet import Fernet  # for encripting the password
 
 # Generate a key for encryption and decryption
@@ -11,9 +11,9 @@ our_key = b'AakxkKGGGNLTYL3KnpdGe-k3DvaT1iAepzxHafVdfn0=' # encription key
 cipher_suite = Fernet(our_key)
 
 
-class StorageManagement:
+class storage:
     '''
-        StorageManagement class is used to load and save the data in json file.
+        storage class is used to load and save the data in json file.
         It has save_data_dic which holds the library_obj respective data in dictionary format and then saved in json.
     '''
     def __init__(self):
@@ -32,12 +32,12 @@ class StorageManagement:
                 for category, items in data.items():
                     if category == "book_data":
                         for identifier, item_data in items.items():
-                            item = BookManagement(item_data["title"], item_data["author"], item_data["identifier"], item_data["checked_out_by"], item_data["check_out_date_time"], item_data["exp_return_date_time"])
+                            item = book(item_data["title"], item_data["author"], item_data["identifier"], item_data["checked_out_by"], item_data["check_out_date_time"], item_data["exp_return_date_time"])
                             self.library_obj["book_data"].append(item)
                             self.save_data_dic["book_data"].update({identifier : item_data})
                     else:
                         for identifier, item_data in items.items():
-                            item = UserManagement(item_data["title"], identifier, item_data["password"], item_data["checked_out_books"])
+                            item = user(item_data["title"], identifier, item_data["password"], item_data["checked_out_books"])
                             self.library_obj["user_data"].append(item)
                             self.save_data_dic["user_data"].update({identifier : item_data})
                             # self.save_data_dic["user_data"].append(item_data)

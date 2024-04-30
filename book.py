@@ -1,7 +1,7 @@
 from models import CenteralIdentefier
 
 
-class BookManagement(CenteralIdentefier):
+class book(CenteralIdentefier):
     '''
         BookManagement class is used to create a book object.
         It has the information of book like title, author, isbn, checked_out_by, check_out_date_time, exp_return_date_time.
